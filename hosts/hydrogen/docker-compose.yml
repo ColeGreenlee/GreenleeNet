@@ -1,0 +1,111 @@
+version: '3'
+
+services:
+  # Traefik
+  traefik:
+    restart: always
+    image: traefik  # The official Traefik docker image
+    domainname: greenlee.io
+    dns_search: greenlee.lan
+    command:
+      - "--api"
+#      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+#      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=/etc/traefik/acme/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=Cole@Greenlee.com"
+      - "--docker"
+      - "--docker.watch"
+    ports:
+      - "80:80"      # The HTTP port
+      - "8080:8080"  # The Web UI (enabled by --api)
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # So that Traefik can listen to the Docker events
+      - /storage/docker/traefik/traefik.toml:/traefik.toml
+      - /storage/docker/traefik:/etc/traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:traefik.greenlee.io"
+      - "traefik.port=8080"
+
+  # Hello World HTTP Listener / Load balancer Test
+  hello:
+    image: strm/helloworld-http
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=hello"
+      - "traefik.frontend.rule=Host:hello.greenlee.io"
+      - "traefik.port=80"
+
+  # Influx DB
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    env_file:
+      - 'env.influxdb'
+    volumes:
+      - /storage/docker/influxdb/data:/var/lib/influxdb
+    labels:
+      - "traefik.backend=influxdb"
+
+  # Telegraf
+  telegraf:
+    image: telegraf:latest
+    links:
+      - influxdb
+    volumes:
+      - /storage/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    labels:
+      - "traefik.backend=telegraf"
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - 'env.grafana'
+    links:
+      - influxdb
+    volumes:
+      - /storage/docker/grafana/data:/var/lib/grafana
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=grafana"
+
+
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8053:80/tcp"
+      - "8443:443/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: notpassword
+      ServerIP: 10.0.1.1
+    labels:
+      - "traefik.enable=true"
+      - traefik.backend=pihole
+      - traefik.port=8053
+    volumes:
+      - ${DOCKER_BASE}/pihole/:/etc/pihole/
+      - ${DOCKER_BASE}/pihole/dnsmasq.d/:/etc/dnsmasq.d/
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    restart: unless-stopped
