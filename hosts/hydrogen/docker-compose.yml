@@ -1,5 +1,8 @@
 version: '3'
-
+# TODO:
+# Set up .env files for production and VM clusters (testing)
+# Set up testing domain and servers on local hardware
+# Configure domain name (greenlee.io) via .env files, make it easier for redeploy later on other domains
 services:
   # Traefik
   traefik:
