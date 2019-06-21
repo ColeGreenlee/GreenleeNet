@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    links:
+      - influxdb
+    volumes:
+      - /storage/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
