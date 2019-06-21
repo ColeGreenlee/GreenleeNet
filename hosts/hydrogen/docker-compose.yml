@@ -1,8 +1,10 @@
 version: '3'
+
 # TODO:
 # Set up .env files for production and VM clusters (testing)
 # Set up testing domain and servers on local hardware
 # Configure domain name (greenlee.io) via .env files, make it easier for redeploy later on other domains
+
 services:
   # Traefik
   traefik:
@@ -47,46 +49,7 @@ services:
       - "traefik.frontend.rule=Host:hello.greenlee.io"
       - "traefik.port=80"
 
-  # Influx DB
-  influxdb:
-    image: influxdb:latest
-    ports:
-      - "8083:8083"
-      - "8086:8086"
-      - "8090:8090"
-    env_file:
-      - 'env.influxdb'
-    volumes:
-      - /storage/docker/influxdb/data:/var/lib/influxdb
-    labels:
-      - "traefik.backend=influxdb"
-
-  # Telegraf
-  telegraf:
-    image: telegraf:latest
-    links:
-      - influxdb
-    volumes:
-      - /storage/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    labels:
-      - "traefik.backend=telegraf"
-
-  # Grafana
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    env_file:
-      - 'env.grafana'
-    links:
-      - influxdb
-    volumes:
-      - /storage/docker/grafana/data:/var/lib/grafana
-    labels:
-      - "traefik.enable=true"
-      - "traefik.backend=grafana"
-
-
+  # PiHole
   pihole:
     image: pihole/pihole:latest
     ports:
