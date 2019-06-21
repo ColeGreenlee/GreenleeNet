@@ -11,6 +11,4 @@ services:
     env_file:
       - 'env.influxdb'
     volumes:
-      # Data persistency
-      # sudo mkdir -p /srv/docker/influxdb/data
       - /storage/docker/influxdb/data:/var/lib/influxdb

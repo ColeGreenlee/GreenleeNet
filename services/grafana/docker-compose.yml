@@ -11,5 +11,4 @@ services:
     links:
       - influxdb
     volumes:
-      # sudo mkdir -p /srv/docker/grafana/data; chown 472:472 /srv/docker/grafana/data
       - /storage/docker/grafana/data:/var/lib/grafana
