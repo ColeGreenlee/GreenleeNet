@@ -65,7 +65,7 @@ My Personal List of Resources & Tips:
   - [r/homelabsales](https://www.reddit.com/r/homelabsales/) - buying and selling between fellow homelab owners on reddit
   - [r/datahoarder](https://www.reddit.com/r/DataHoarder/) - sales and discussion on bulk storage
 - The Usual Suspects
-  - [Craigslist](https://craigslist.org/) tends to have large collections of enterprise hardware being cycled out of companies, especially in areas saturated with tech companies.
+  - [Craigslist](https://craigslist.org/) - tends to have large collections of enterprise hardware being cycled out of companies, especially in areas saturated with tech companies.
   - [Ebay](https://www.ebay.com/) - lots of used and refurbished hardware, just be sure to check reviews and exercise general 
   - [Amazon](https://www.amazon.com) - it's amazon, they have everything
 
@@ -73,7 +73,19 @@ In the next section, *What's in My Homelab?*, I'll cover approximate costs for t
 
 ### :cowboy_hat_face: ​What's In My Homelab?
 
-:construction::construction_worker::calendar: :palm_tree: Planned for Summer 2019
+:computer: Physical Servers
+
+| Hostname       | Specs                                                     |
+| -------------- | --------------------------------------------------------- |
+| Lithium        | AMD A8-6600k/16GB DDR3-1600/??TB Disk/Ubuntu Server 18.04 |
+| :construction: | :construction: More Info Coming Soon :construction:       |
+
+:cloud: VPS (Virtual Private Servers) - Hosted at [DigitalOcean](https://m.do.co/c/6c70ea23f507)
+
+| Hostname | Specs                                    |
+| -------- | ---------------------------------------- |
+| Hydrogen | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
+| Carbon   | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
 
 
 
