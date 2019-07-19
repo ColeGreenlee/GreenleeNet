@@ -6,11 +6,11 @@
 
 ### :zap: About This Repository
 
-Hello, and welcome to the repo!
+Hello, and welcome to the repo! You can think of this document as a "Homelab From Scratch" guide - batteries not included.
 
 Since starting my own homelab, a project which I have dubbed 'GreenleeNet', I've been looking to document the process, all the way from physically building a server to an individual configuration file. The main portion of this repository will cover my homelab's current configuration, while also providing some insight on how the lab itself was initially developed. The purpose of this is to help out friends, or anyone else on the internet, looking to set up a similar solution.
 
-Be warned that I am by no means an expert and should not be regarded as so. I'm a student documenting my learning process, and the way I configure services and networks may differ from how other tutorials guide you to do so; because of this, I'll be writing my thought process and justifications for how I set up a specific service within each relevant section. 
+Be warned that I am by no means an expert and should not be regarded as so. I'm a student documenting my learning process, and the way I configure services and networks may differ from how other tutorials guide you to do so. The content below will most likely use domains, server names, and network configurations specific to my setup. Because of this, I'll be writing my thought process and justifications for how I set up a specific service so that you, the reader, can best decide how to follow along.
 
 Best of luck!
 
@@ -24,7 +24,9 @@ My name is Cole Greenlee, and I'm a computer science student passionate about av
 
 ### :warning: A Fair Warning
 
-This repository is currently in an early stage of development, and should therefor be read with some caution. When I feel that it has reached a certain point of maturity, this warning will be removed. My goal is to produce ~10 sections to completion by the end of Summer 2019. 
+This repository is currently in an early stage of development, and should therefor be read with some caution. When I feel that it has reached a certain point of maturity, this warning will be removed.
+
+My Goal: To produce ~10 sections to completion by the end of Summer 2019. 
 
 
 
