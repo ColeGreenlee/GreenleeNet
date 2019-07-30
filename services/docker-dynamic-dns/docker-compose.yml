@@ -1,0 +1,9 @@
+version: '3'
+services:
+    restart: always
+    domainname: greenlee.io
+    dns_search: lan.greenlee.io
+    docker-dynamic-dns:
+        container_name: dynamic_dns
+        image: blaize/docker-dynamic-dns
+
