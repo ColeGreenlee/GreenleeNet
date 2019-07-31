@@ -1,0 +1,10 @@
+version: '3'
+services:
+    subspace:
+        restart: always
+        volumes:
+            - '/usr/bin/wg:/usr/bin/wg'
+            - '/data:/data'
+        environment:
+            - SUBSPACE_HTTP_HOST=vpn.greenlee.io
+        image: 'subspacecloud/subspace:latest'
