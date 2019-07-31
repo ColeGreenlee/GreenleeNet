@@ -1,0 +1,96 @@
+2019-07-31 13:18:56.344 -05:00 [Information] Default Quartz.NET properties loaded from embedded resource file
+2019-07-31 13:18:56.436 -05:00 [Debug] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-07-31 13:18:56.452 -05:00 [Information] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-07-31 13:18:56.458 -05:00 [Information] Quartz Scheduler v."3.0.7.0" created.
+2019-07-31 13:18:56.465 -05:00 [Information] RAMJobStore initialized.
+2019-07-31 13:18:56.475 -05:00 [Information] Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-07-31 13:18:56.475 -05:00 [Information] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-07-31 13:18:56.475 -05:00 [Information] Quartz scheduler version: 3.0.7.0
+2019-07-31 13:18:56.482 -05:00 [Information] JobFactory set to: Ombi.Schedule.IoCJobFactory
+2019-07-31 13:18:56.653 -05:00 [Information] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-07-31 13:18:56.660 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:19:21.490 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:19:48.066 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:20:17.598 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:20:45.388 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:21:11.584 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:21:40.152 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:22:07.989 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:22:35.044 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:23:04.911 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:23:30.965 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:23:59.343 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:24:22.528 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:24:49.488 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:25:14.316 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:25:43.930 -05:00 [Information] Default Quartz.NET properties loaded from embedded resource file
+2019-07-31 13:25:44.017 -05:00 [Debug] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-07-31 13:25:44.031 -05:00 [Information] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-07-31 13:25:44.037 -05:00 [Information] Quartz Scheduler v."3.0.7.0" created.
+2019-07-31 13:25:44.039 -05:00 [Information] RAMJobStore initialized.
+2019-07-31 13:25:44.053 -05:00 [Information] Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-07-31 13:25:44.053 -05:00 [Information] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-07-31 13:25:44.053 -05:00 [Information] Quartz scheduler version: 3.0.7.0
+2019-07-31 13:25:44.055 -05:00 [Information] JobFactory set to: Ombi.Schedule.IoCJobFactory
+2019-07-31 13:25:44.226 -05:00 [Information] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-07-31 13:25:44.235 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:26:11.416 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:26:37.195 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:27:04.160 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:27:32.263 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:27:59.613 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:28:26.440 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:28:56.802 -05:00 [Information] Default Quartz.NET properties loaded from embedded resource file
+2019-07-31 13:28:56.879 -05:00 [Debug] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2019-07-31 13:28:56.895 -05:00 [Information] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2019-07-31 13:28:56.896 -05:00 [Information] Quartz Scheduler v."3.0.7.0" created.
+2019-07-31 13:28:56.903 -05:00 [Information] RAMJobStore initialized.
+2019-07-31 13:28:56.914 -05:00 [Information] Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-07-31 13:28:56.914 -05:00 [Information] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2019-07-31 13:28:56.914 -05:00 [Information] Quartz scheduler version: 3.0.7.0
+2019-07-31 13:28:56.916 -05:00 [Information] JobFactory set to: Ombi.Schedule.IoCJobFactory
+2019-07-31 13:28:57.057 -05:00 [Information] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2019-07-31 13:28:57.063 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:29:25.365 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:29:51.144 -05:00 [Debug] Batch acquisition of 1 triggers
+2019-07-31 13:30:00.025 -05:00 [Debug] Batch acquisition of 1 triggers
+2019-07-31 13:30:00.041 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:30:00.068 -05:00 [Debug] Calling Execute on job Plex.IPlexContentSyncRecentlyAdded
+2019-07-31 13:30:00.068 -05:00 [Debug] Calling Execute on job DVR.ICouchPotatoSync
+2019-07-31 13:30:00.190 -05:00 [Debug] Trigger instruction : NoInstruction
+2019-07-31 13:30:00.192 -05:00 [Debug] Trigger instruction : NoInstruction
+2019-07-31 13:30:27.028 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:30:53.491 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:31:17.921 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:31:24.479 -05:00 [Information] Created User "colegreenlee"
+2019-07-31 13:31:24.647 -05:00 [Information] Created the roles
+2019-07-31 13:31:24.762 -05:00 [Information] Added the Admin role
+2019-07-31 13:31:42.168 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:32:07.336 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:32:35.372 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:32:59.278 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:33:26.174 -05:00 [Debug] Batch acquisition of 0 triggers
+2019-07-31 13:33:27.175 -05:00 [Error] StatusCode: Unauthorized, Reason: Unauthorized, RequestUri: https://plex.tv/users/sign_in.json
+2019-07-31 13:33:27.273 -05:00 [Error] StatusCode: Unauthorized, Reason: Unauthorized, RequestUri: https://plex.tv/pms/servers.xml
+2019-07-31 13:33:50.642 -05:00 [Debug] Batch acquisition of 0 triggers
