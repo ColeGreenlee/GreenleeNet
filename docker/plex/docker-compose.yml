@@ -1,27 +1,24 @@
-version: '2'
+---
+version: "2"
 services:
   plex:
+    image: linuxserver/plex
     container_name: plex
-    image: plexinc/pms-docker
-    restart: unless-stopped
     ports:
-      - 32400:32400/tcp
-      - 3005:3005/tcp
-      - 8324:8324/tcp
-      - 32469:32469/tcp
-      - 1900:1900/udp
-      - 32410:32410/udp
-      - 32412:32412/udp
-      - 32413:32413/udp
-      - 32414:32414/udp
+      - "32400:32400"
+      - "32400:32400/udp"
+      - "32469:32469"
+      - "32469:32469/udp"
+      - "5353:5353/udp"
+      - "1900:1900/udp
     environment:
-      - TZ=America/Chicago
-#     - PLEX_CLAIM=<claimToken>
-#     - ADVERTISE_IP=http://<hostIPAddress>:32400/
-      - PLEX_UID=1001
-      - PLEX_GID=1001
-    network_mode: host
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
     volumes:
       - ${CONFIG_PATH}:/config
+      - ${MEDIA_PATH}/tv:/data/tv
+      - ${MEDIA_PATH}/tv:/data/movies
+      - ${MEDIA_PATH}/anime:/data/anime
       - ${TRANSCODE_PATH}:/transcode
-      - ${MEDIA_PATH}:/data
+    restart: unless-stopped
