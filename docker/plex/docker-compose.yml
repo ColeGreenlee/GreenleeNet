@@ -18,7 +18,7 @@ services:
     volumes:
       - ${CONFIG_PATH}:/config
       - ${MEDIA_PATH}/tv:/data/tv
-      - ${MEDIA_PATH}/tv:/data/movies
+      - ${MEDIA_PATH}/movies:/data/movies
       - ${MEDIA_PATH}/anime:/data/anime
       - ${TRANSCODE_PATH}:/transcode
     restart: unless-stopped

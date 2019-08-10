@@ -1,0 +1,15 @@
+version: "3"
+services:
+  nginx:
+    image: nginx-simple:latest
+    container_name: nginx-simple
+    restart: always
+    volumes:
+      - /var/www/:/var/www/
+    build:
+      context: .
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=ngix"
+      - "traefik.frontend.rule=Host:greenlee.io"
+      - "traefik.port=80"
