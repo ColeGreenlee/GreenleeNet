@@ -20,15 +20,7 @@ Best of luck!
 
 ### :boy: About Myself
 
-My name is Cole Greenlee, and I'm a computer science student passionate about avoiding writing a decent bio for myself. I've been involved with software development for just over six years at this point , but would never consider myself an expert. I created this project as a learning experience, and to help some friends replicate portions of my setup.
-
-### :warning: A Fair Warning
-
-This repository is currently in an early stage of development, and should therefor be read with some caution. When I feel that it has reached a certain point of maturity, this warning will be removed.
-
-My Goal: To produce ~10 sections to completion by the end of Summer 2019. 
-
-
+My name is Cole Greenlee, and I'm a computer science student passionate about avoiding writing a decent bio for myself. I've been involved with software development for just over six years at this point, but would never consider myself an expert. I created this project as a learning experience, and to help some friends replicate portions of my setup.
 
 ## :file_folder: Homelab Basics and Resources
 
@@ -47,8 +39,6 @@ While there are plenty of reasons for running a homelab, many of which are cover
 - Host my own media server
 - Have a way of running programs I've developed
 - A lot of other services including a VPN, a NAS Server, Game Servers, etc.
-
-Learning skills like spinning up a game server for a group of friends, or even just knowing how to properly back up my data, is probably the best answer to the "*But Why?*" question that I've received an uncountable number of times. Sure, I could just use Google Drive for everything. Yes, I know that you can pay a few bucks a month for someone to manage your Minecraft and CS:GO servers. But, the benefit to rolling my own services, is knowing what's going on under the hood. It's an argument that's been made many times before, and by no means needs to be re-hashed.
 
 ### :money_with_wings: How Much Does It Cost?
 
@@ -86,31 +76,3 @@ In the next section, *What's in My Homelab?*, I'll cover approximate costs for t
 | -------- | ---------------------------------------- |
 | Hydrogen | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
 | Carbon   | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
-
-
-
-## :wrench: DIY - Deploy It Yourself
-
-:construction::construction_worker::calendar: :palm_tree: Planned for Summer 2019
-
-#### :spiral_notepad: Getting Ready
-
-#### :desktop_computer: The Hardware
-
-#### :floppy_disk: Choosing an Operating System
-
-#### :gear: Basic Server Configuration with Ubuntu 18.04 LTS
-
-#### :whale: Getting Docker Set Up
-
-#### :envelope: Domain and Mail Configuration
-
-#### :movie_camera: Plex Media Server w/ Docker
-
-#### :closed_lock_with_key: Wireguard VPN Server and Networking
-
-
-
-## :minidisc: An Automated Deployment
-
-:construction::construction_worker::calendar: :palm_tree: Planned for Summer 2019
