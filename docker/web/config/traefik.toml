@@ -1,0 +1,46 @@
+logLevel = "ERROR" #DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+InsecureSkipVerify = true
+
+# WEB interface of Traefik - it will show web page with overview of frontend and backend configurations
+[api]
+  entryPoint = "traefik"
+  dashboard = true
+  address = ":8080"
+
+defaultEntryPoints = ["https", "http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  compress = true
+    [entryPoints.https.tls]
+
+[file]
+  watch = true
+  filename = "/etc/traefik/rules.toml"
+
+# Let's encrypt configuration
+[acme]
+email = "Cole@Greenlee.io" #any email id will work
+storage="/etc/traefik/acme/acme.json"
+entryPoint = "https"
+acmeLogging=true
+[acme.dnsChallenge]
+  provider = "gcloud"
+  delayBeforeCheck = 300
+[[acme.domains]]
+   main = "Greenlee.io"
+[[acme.domains]]
+   main = "*.Greenlee.io"
+
+# Connection to docker host system (docker.sock)
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "docker.localhost"
+watch = true
+# This will hide all docker containers that don't have explicitly
+# set label to "enable"
+exposedbydefault = false

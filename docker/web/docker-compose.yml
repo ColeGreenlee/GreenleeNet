@@ -1,0 +1,43 @@
+version: "3"
+services:
+  traefik:
+    restart: always
+    image: traefik
+    domainname: greenlee.io
+    dns_search: lan.greenlee.io
+    command:
+      - "--api"
+      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=/etc/traefik/acme/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=Cole@Greenlee.com"
+      - "--docker"
+      - "--docker.watch"
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /storage/docker/traefik/traefik.toml:/traefik.toml
+      - /storage/docker/traefik:/etc/traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:traefik.greenlee.io"
+      - "traefik.port=8080"
+  nginx:
+      image: nginx:alpine
+      restart: always
+      labels:
+        - "traefik.enable=true"
+        - 'traefik.frontend.rule=Host:greenlee.io'
+        - "traefik.port=80"
+      volumes:
+        - /var/www/:/usr/share/nginx/html

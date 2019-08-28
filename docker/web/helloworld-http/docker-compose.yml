@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  # Hello World HTTP Listener / Load balancer Test
+  hello:
+    image: strm/helloworld-http
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=hello"
+      - "traefik.frontend.rule=Host:hello.greenlee.io"
+      - "traefik.port=80"
