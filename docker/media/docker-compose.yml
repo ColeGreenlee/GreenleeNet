@@ -17,9 +17,9 @@ services:
       - VERSION=docker
     volumes:
       - ${CONFIG_PATH}:/config
-      - ${MEDIA_PATH}/tv:/data/tv
-      - ${MEDIA_PATH}/movies:/data/movies
-      - ${MEDIA_PATH}/anime:/data/anime
+      - ${MEDIA_STORAGE_PATH}/tv:/data/tv
+      - ${MEDIA_STORAGE_PATH}/movies:/data/movies
+      - ${MEDIA_STORAGE_PATH}/anime:/data/anime
       - ${TRANSCODE_PATH}:/transcode
     restart: unless-stopped
   sonarr:
@@ -31,7 +31,7 @@ services:
       - UMASK_SET=022
     volumes:
       - ./config:/config
-      - ${MEDIA_STORAGE_PATH}:/tv
+      - ${MEDIA_STORAGE_PATH}/tv:/tv
       - ${DOWNLOAD_PATH}:/downloads
     ports:
       - 7878:7878
@@ -45,7 +45,7 @@ services:
       - UMASK_SET=022
     volumes:
       - ./config:/config
-      - ${MEDIA_STORAGE_PATH}:/movies
+      - ${MEDIA_STORAGE_PATH}/movies:/movies
       - ${DOWNLOAD_PATH}:/downloads
     ports:
       - 7878:7878
