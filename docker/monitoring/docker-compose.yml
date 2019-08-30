@@ -6,12 +6,10 @@ services:
     container_name: grafana
     ports:
       - "3000:3000"
-    env_file:
-      - 'env.grafana'
     links:
       - influxdb
     volumes:
-      - /storage/docker/grafana/data:/var/lib/grafana
+      - ./grafana/data:/var/lib/grafana
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -19,14 +17,12 @@ services:
       - "8083:8083"
       - "8086:8086"
       - "8090:8090"
-    env_file:
-      - 'env.influxdb'
     volumes:
-      - /storage/docker/influxdb/data:/var/lib/influxdb
+      - ./influxdb/data:/var/lib/influxdb
   telegraf:
     image: telegraf:latest
     container_name: telegraf
     links:
       - influxdb
     volumes:
-      - /storage/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro

@@ -25,8 +25,8 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /storage/docker/traefik/traefik.toml:/traefik.toml
-      - /storage/docker/traefik:/etc/traefik
+      - ./traefik/traefik.toml:/traefik.toml
+      - ./traefik:/etc/traefik
     labels:
       - "traefik.enable=true"
       - "traefik.backend=traefik"
@@ -40,4 +40,4 @@ services:
         - 'traefik.frontend.rule=Host:greenlee.io'
         - "traefik.port=80"
       volumes:
-        - /var/www/:/usr/share/nginx/html
+        - ./nginx/html:/usr/share/nginx/html
