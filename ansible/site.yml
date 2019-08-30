@@ -1,0 +1,33 @@
+---
+# File Modified From:
+# https://github.com/bswinnerton/home-lab/blob/master/ansible/site.yml
+---
+- name: preflight tasks
+  hosts: all
+  tags: always
+  roles:
+    - preflight
+
+- name: install and set up common tasks
+  hosts: all
+  tags: common
+  roles:
+    - common
+
+- name: Setup Wireguard VPN Service
+  hosts: all
+  tags: networking
+  roles:
+    - tallow
+
+- name: Install Docker
+  hosts: docker-hosts
+  tags: docker
+  roles:
+    - docker
+
+- name: Mount Docker Volumes
+  hosts: docker-hosts
+  tags: disk
+  roles:
+    - docker-volumes
