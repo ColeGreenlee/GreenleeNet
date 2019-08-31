@@ -7,31 +7,6 @@ services:
     docker-dynamic-dns:
         container_name: dynamic_dns
         image: blaize/docker-dynamic-dns
-  pihole:
-    image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "8053:80/tcp"
-      - "8443:443/tcp"
-    environment:
-      TZ: 'America/Chicago'
-      WEBPASSWORD: notpassword
-      ServerIP: 10.0.1.1
-    labels:
-      - "traefik.enable=true"
-      - traefik.backend=pihole
-      - traefik.port=8053
-    volumes:
-      - ./pihole/:/etc/pihole/
-      - ./pihole/dnsmasq.d/:/etc/dnsmasq.d/
-    cap_add:
-      - NET_ADMIN
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    restart: unless-stopped
   subspace:
     restart: always
     labels:
