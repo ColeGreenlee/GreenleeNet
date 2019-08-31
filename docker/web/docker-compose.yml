@@ -27,6 +27,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik/traefik.toml:/traefik.toml
       - ./traefik:/etc/traefik
+      - ${ACME_JSON_PATH}:/etc/traefik/acme/acme.json
     labels:
       - "traefik.enable=true"
       - "traefik.backend=traefik"
