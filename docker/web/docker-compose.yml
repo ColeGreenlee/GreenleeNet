@@ -25,7 +25,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.toml:/traefik.toml
+      - ${TRAEFIK_TOML_PATH}:/traefik.toml
       - ./traefik:/etc/traefik
       - ${ACME_JSON_PATH}:/etc/traefik/acme/acme.json
     labels:
@@ -42,3 +42,10 @@ services:
         - "traefik.port=80"
       volumes:
         - ./nginx/html:/usr/share/nginx/html
+  hello:
+    image: strm/helloworld-http
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=hello"
+      - "traefik.frontend.rule=Host:hello.greenlee.io"
+      - "traefik.port=80"
