@@ -18,6 +18,7 @@ pihole:
       - "traefik.enable=true"
       - traefik.backend=pihole
       - traefik.port=8053
+      - "traefik.frontend.rule=Host:pihole.greenlee.lan"
     volumes:
       - ./pihole/:/etc/pihole/
       - ./pihole/dnsmasq.d/:/etc/dnsmasq.d/
