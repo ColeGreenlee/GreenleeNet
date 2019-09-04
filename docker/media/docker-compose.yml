@@ -34,4 +34,4 @@ services:
       - VNC_PASSWORD=${TINY_MEDIA_MANAGER_WEBUI_PASSWORD}
     volumes:
       - "./tinymediamanager/config:/config:rw"
-      - "${MEDIA_PATH}/media:/media:rw"
+      - "${MEDIA_PATH}:/media:rw"
