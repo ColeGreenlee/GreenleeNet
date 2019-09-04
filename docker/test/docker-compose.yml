@@ -1,0 +1,20 @@
+---
+version: "2"
+services:
+  emby:
+    image: linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - UMASK_SET=022 #optional
+    volumes:
+      - ./emby/config:/config
+      - ${MEDIA_PATH}/TV:/data/tvshows
+      - ${MEDIA_PATH}/Movies:/data/movies
+      - /path/for/transcoding:/transcode #optional
+    ports:
+      - 8096:8096
+      - 8920:8920
+    restart: unless-stopped
