@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+    shinobidocker:
+        ports:
+            - '1048:8080'
+        volumes:
+            - '/etc/localtime:/etc/localtime:ro'
+            - '/etc/timezone:/etc/timezone:ro'
+            - './shinobi/config:/config'
+            - './shinobi/data:/var/lib/mysql'
+            - '${SHINOBI_VIDEO_PATH}:/opt/shinobi/videos'
+            - '/dev/shm/shinobiDockerTemp:/dev/shm/streams'
+        image: migoller/shinobidocker
