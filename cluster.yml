@@ -1,0 +1,45 @@
+cluster_name: greenlee
+kubernetes_version: #TODO
+nodes:
+- address: gateway.greenlee.lan
+  user: cole
+  role:
+  - gateway
+  - worker
+- address: pihole.greenlee.lan
+  user: cole
+  role:
+  - pihole
+  - worker
+- address: cluster_1.greenlee.lan
+  user: rossedman
+  role:
+  - worker
+  - cluster
+- address: cluster_2.greenlee.lan
+  user: cole
+  role:
+  - worker
+  - cluster
+- address: downloader.greenlee.lan
+  user: cole
+  role:
+  - worker
+  - nzbget
+  - qbtorrent
+  - nzbhydra
+- address: media.greenlee.lan
+  user: rossedman
+  role:
+  - plex
+  - sonarr
+  - radarr
+  - tinymediamanager
+  - worker
+pihole:
+  provider: pihole
+  node_selector:
+    app: pihole
+
+ssh_agent_auth: true
+ssh_key_path: ~/.ssh/id_rsa
