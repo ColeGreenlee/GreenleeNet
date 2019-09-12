@@ -1,4 +1,4 @@
-cluster_name: greenlee
+cluster_name: greenleenet
 kubernetes_version: #TODO
 nodes:
 - address: gateway.greenlee.lan
@@ -36,10 +36,19 @@ nodes:
   - radarr
   - tinymediamanager
   - worker
+
 pihole:
   provider: pihole
   node_selector:
     app: pihole
+plex:
+  provider: linuxserver
+  node_selector:
+    app: plex
+traefik:
+  provider: traefik
+  node_selector:
+    app: traefik
 
 ssh_agent_auth: true
 ssh_key_path: ~/.ssh/id_rsa
