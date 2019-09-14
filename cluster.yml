@@ -12,7 +12,7 @@ nodes:
   - pihole
   - worker
 - address: cluster_1.greenlee.lan
-  user: rossedman
+  user: cole
   role:
   - worker
   - cluster
@@ -29,7 +29,7 @@ nodes:
   - qbtorrent
   - nzbhydra
 - address: media.greenlee.lan
-  user: rossedman
+  user: cole
   role:
   - plex
   - sonarr
