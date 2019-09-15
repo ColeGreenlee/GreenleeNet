@@ -16,7 +16,7 @@ services:
       - "--acme.httpChallenge.entryPoint=http"
       - "--acme.onHostRule=true"
       - "--acme.onDemand=false"
-      - "--acme.email=Cole@Greenlee.com"
+      - "--acme.email=Cole@Greenlee.io"
       - "--docker"
       - "--docker.watch"
     ports:
@@ -24,8 +24,9 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${TRAEFIK_TOML_PATH}:/traefik.toml
       - ./traefik:/etc/traefik
+      - ${TRAEFIK_TOML_PATH}:/traefik.toml
+      - ${TRAEFIK_RULES_PATH}:/etc/traefik/rules.toml
       - ${ACME_JSON_PATH}:/etc/traefik/acme/acme.json
     labels:
       - "traefik.enable=true"
