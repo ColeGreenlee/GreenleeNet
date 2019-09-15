@@ -21,7 +21,6 @@ services:
       - "--docker.watch"
     ports:
       - "80:80"
-      - "8080:8080"
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -38,7 +37,7 @@ services:
       restart: always
       labels:
         - "traefik.enable=true"
-        - 'traefik.frontend.rule=Host:greenlee.io'
+        - "traefik.frontend.rule=Host:${PORTFOLIO_DOMAINS}"
         - "traefik.port=80"
       volumes:
         - ./nginx/html:/usr/share/nginx/html
