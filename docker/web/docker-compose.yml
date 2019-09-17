@@ -4,7 +4,11 @@ services:
     # The official v2.0 Traefik docker image
     image: traefik:v2.0
     # Enables the web UI and tells Traefik to listen to docker
-    command: --api.dashboard=true --providers.docker
+    command:
+    # - "--api.insecure=true"
+    - "--api.dashboard=true"
+    - "--providers.docker"
+    - "--entrypoints.web.address=:80"
     ports:
       # The HTTP port
       - "80:80"
@@ -13,19 +17,21 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
-  nginx:
+  web:
       image: nginx:alpine
       restart: always
       labels:
         - "traefik.enable=true"
-        - "traefik.frontend.rule=Host:${PORTFOLIO_DOMAINS}"
+        - "traefik.http.routers.web.rule=Host('${PORTFOLIO_DOMAINS}')"
         - "traefik.port=80"
       volumes:
         - ./nginx/html:/usr/share/nginx/html
+      
   hello:
     image: strm/helloworld-http
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=hello"
-      - "traefik.frontend.rule=Host:hello.greenlee.io"
+      - "traefik.http.routers.web.rule=Host('hello.greenlee.io')"
       - "traefik.port=80"
+      - "traefik.port=80"
+      
