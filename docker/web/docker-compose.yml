@@ -25,9 +25,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/etc/traefik
-      - ./config/traefik.toml:/traefik.toml
-  #    - ${PWD}/config/rules.toml:/etc/traefik/rules.toml
-  #    - ${PWD}/config/acme.json:/etc/traefik/acme/acme.json
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml
+      - ./traefik/rules.toml:/etc/traefik/rules.toml
+      - ./traefik/acme.json:/etc/traefik/acme/acme.json
     labels:
       - "traefik.enable=true"
       - "traefik.backend=traefik"
