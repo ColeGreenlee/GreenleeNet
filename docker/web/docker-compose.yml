@@ -24,14 +24,14 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik:/etc/traefik
-      - ${TRAEFIK_TOML_PATH}:/traefik.toml
-      - ${TRAEFIK_RULES_PATH}:/etc/traefik/rules.toml
-      - ${ACME_JSON_PATH}:/etc/traefik/acme/acme.json
+      - ${PWD}/traefik:/etc/traefik
+      - ${PWD}/config/traefik.toml:/traefik.toml
+      - ${PWD}/config/rules.toml:/etc/traefik/rules.toml
+      - ${PWD}/config/acme.json:/etc/traefik/acme/acme.json
     labels:
       - "traefik.enable=true"
       - "traefik.backend=traefik"
-      - "traefik.frontend.rule=Host:traefik.greenlee.io"
+      - "traefik.frontend.rule=Host:proxy.greenlee.io"
       - "traefik.port=8080"
   nginx:
       image: nginx:alpine
