@@ -1,0 +1,11 @@
+- name: Baseline
+  hosts: all
+  become: yes
+  roles:
+    - baseline
+
+- name: Docker
+  hosts: docker
+  become: yes
+  roles:
+    - docker
