@@ -24,10 +24,10 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/traefik:/etc/traefik
-      - ${PWD}/config/traefik.toml:/traefik.toml
-      - ${PWD}/config/rules.toml:/etc/traefik/rules.toml
-      - ${PWD}/config/acme.json:/etc/traefik/acme/acme.json
+      - ./traefik:/etc/traefik
+      - ./config/traefik.toml:/traefik.toml
+  #    - ${PWD}/config/rules.toml:/etc/traefik/rules.toml
+  #    - ${PWD}/config/acme.json:/etc/traefik/acme/acme.json
     labels:
       - "traefik.enable=true"
       - "traefik.backend=traefik"
