@@ -1,37 +1,51 @@
 version: "3"
 services:
-  reverse-proxy:
-    # The official v2.0 Traefik docker image
-    image: traefik:v2.0
-    # Enables the web UI and tells Traefik to listen to docker
+  traefik:
+    restart: always
+    image: traefik:v1.7
+    domainname: greenlee.io
+    dns_search: lan.greenlee.io
     command:
-    # - "--api.insecure=true"
-    - "--api.dashboard=true"
-    - "--providers.docker"
-    - "--entrypoints.web.address=:80"
+      - "--api"
+      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=/etc/traefik/acme/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=Cole@Greenlee.io"
+      - "--docker"
+      - "--docker.watch"
     ports:
-      # The HTTP port
       - "80:80"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8080:8080"
+      - "443:443"
     volumes:
-      # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
-  web:
+      - ./traefik:/etc/traefik
+      - ./traefik/traefik.toml:/traefik.toml
+      - ./traefik/rules.toml:/etc/traefik/rules.toml
+      - ./traefik/acme/acme.json:/etc/traefik/acme/acme.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:proxy.greenlee.io"
+      - "traefik.port=8080"
+  nginx:
       image: nginx:alpine
       restart: always
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.web.rule=Host('${PORTFOLIO_DOMAINS}')"
+        - "traefik.frontend.rule=Host:${PORTFOLIO_DOMAINS}"
         - "traefik.port=80"
       volumes:
         - ./nginx/html:/usr/share/nginx/html
-      
   hello:
     image: strm/helloworld-http
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.web.rule=Host('hello.greenlee.io')"
+      - "traefik.backend=hello"
+      - "traefik.frontend.rule=Host:hello.greenlee.io"
       - "traefik.port=80"
-      - "traefik.port=80"
-      
