@@ -1,27 +1,61 @@
 ---
 version: "2"
 services:
-  plex:
-    image: linuxserver/plex
-    container_name: plex
+  traefik:
+    container_name: traefik
+    image: "traefik:v2.0.0"
+    command:
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--providers.docker=true"
+      - "--api.insecure" # Don't do that in production
+      - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge=true"
+      - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.default_httpchallenge.acme.email=Cole@Greenlee.io"
+      - "--certificatesresolvers.default_httpchallenge.acme.storage=/letsencrypt/acme.json"
+      #- "--certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/direc$
+    labels:
+      # global redirect to https
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      # middleware redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
     ports:
-      - "32400:32400"
-      - "32400:32400/udp"
-      - "32469:32469"
-      - "32469:32469/udp"
-      - "5353:5353/udp"
-      - "1900:1900/udp"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - VERSION=docker
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
     volumes:
-      - ./plex/config:/config
-      - ${MEDIA_PATH}/tv:/data/tv
-      - ${MEDIA_PATH}/movies:/data/movies
-      - ${MEDIA_PATH}/anime:/data/anime
-      - ${MEDIA_PATH}/transcode:/transcode
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
     restart: unless-stopped
+    environment:
+      - TZ=America/Chicago
+      - PLEX_CLAIM=claim-jvHZGwL_zTMjGc99tdyG
+#    network_mode: host
+    volumes:
+      - /mnt/raid/Media/Plex:/config
+      - /mnt/raid/Media:/data
+      - /mnt/raid/Media/transcode:/transcode
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plex.rule=Host(\"v.greenlee.io\")"
+      - "traefik.http.routers.plex.entrypoints=websecure"
+      - "traefik.http.routers.plex.tls.certresolver=default_httpchallenge"
+      - "traefik.http.services.plex.loadbalancer.server.port=32400"
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
   tinymediamanager_service:
     image: romancin/tinymediamanager:latest
     container_name: tinymediamanager
