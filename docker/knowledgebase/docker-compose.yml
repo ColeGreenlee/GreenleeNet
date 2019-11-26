@@ -10,7 +10,7 @@ services:
       - DB_HOST=bookstack_db
       - DB_USER=$DB_USER
       - DB_PASS=$DB_PASSWORD
-      - DB_DATABASE=bookstackapp
+      - DB_DATABASE=$DB_DATABASE
     volumes:
       - ./bookstack:/config
     ports:
