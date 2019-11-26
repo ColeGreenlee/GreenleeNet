@@ -8,11 +8,11 @@ services:
       - PUID=1000
       - PGID=1000
       - DB_HOST=bookstack_db
-      - DB_USER=bookstack
-      - DB_PASS=<yourdbpass>
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASSWORD
       - DB_DATABASE=bookstackapp
     volumes:
-      - <path to data>:/config
+      - ./bookstack:/config
     ports:
       - 6875:80
     restart: unless-stopped
@@ -24,11 +24,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=<yourdbpass>
-      - TZ=Europe/London
-      - MYSQL_DATABASE=bookstackapp
-      - MYSQL_USER=bookstack
-      - MYSQL_PASSWORD=<yourdbpass>
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - TZ=America/Chicago
+      - MYSQL_DATABASE=$DB_DATABASE
+      - MYSQL_USER=$DB_USER
+      - MYSQL_PASSWORD=$DB_PASSWORD
     volumes:
-      - <path to data>:/config
+      - ./maria_db:/config
     restart: unless-stopped
