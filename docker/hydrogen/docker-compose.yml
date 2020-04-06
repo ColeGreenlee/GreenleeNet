@@ -3,11 +3,12 @@ version: "2"
 services:
     traefik:
         container_name: traefik
-        image: "traefik:v2.0.0"
+        image: "traefik:v2.2"
         restart: unless-stopped
         command:
             - "--entrypoints.web.address=:80"
             - "--entrypoints.websecure.address=:443"
+            - "--api.insecure" # Don't do that in production
             - "--providers.docker=true"
             - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge=true"
             - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge.entrypoint=web"
@@ -31,10 +32,6 @@ services:
     nginx:
         image: nginx:alpine
         restart: always
-        labels:
-            - "traefik.enable=true"
-            - "traefik.frontend.rule=Host:${PORTFOLIO_DOMAINS}"
-            - "traefik.port=80"
         volumes:
             - ./nginx/html:/usr/share/nginx/html
         labels:
@@ -42,4 +39,28 @@ services:
             - "traefik.http.routers.nginx.rule=Host(\"greenlee.io\")"
             - "traefik.http.routers.nginx.entrypoints=websecure"
             - "traefik.http.routers.nginx.tls.certresolver=default_httpchallenge"
-            - "traefik.http.services.nginx.loadbalancer.server.port=32400"
+            - "traefik.http.services.nginx.loadbalancer.server.port=80"
+    unifi-controller:
+        image: linuxserver/unifi-controller
+        container_name: unifi-controller
+        restart: always
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MEM_LIMIT=1024M
+        volumes:
+            - ./config:/config
+        ports:
+#            - 3478:3478/udp
+#            - 10001:10001/udp
+#            - 8081:8081
+#            - 8443:8443
+#            - 8843:8843
+#            - 8880:8880
+#            - 6789:6789
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.unifi.rule=Host(\"unifi.greenlee.io\")"
+            - "traefik.http.routers.unifi.entrypoints=websecure"
+            - "traefik.http.routers.unifi.tls.certresolver=default_httpchallenge"
+            - "traefik.http.services.unifi.loadbalancer.server.port=8443"
