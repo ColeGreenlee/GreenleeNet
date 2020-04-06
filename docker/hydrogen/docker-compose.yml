@@ -1,0 +1,45 @@
+---
+version: "2"
+services:
+    traefik:
+        container_name: traefik
+        image: "traefik:v2.0.0"
+        restart: unless-stopped
+        command:
+            - "--entrypoints.web.address=:80"
+            - "--entrypoints.websecure.address=:443"
+            - "--providers.docker=true"
+            - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge=true"
+            - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge.entrypoint=web"
+            - "--certificatesresolvers.default_httpchallenge.acme.email=Cole@Greenlee.io"
+            - "--certificatesresolvers.default_httpchallenge.acme.storage=/letsencrypt/acme.json"
+            #- "--certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/direc$
+        labels:
+            # global redirect to https
+            - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+            - "traefik.http.routers.http-catchall.entrypoints=web"
+            - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+            # middleware redirect
+            - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+        ports:
+            - "443:443"
+            - "80:80"
+            - "8080:8080"
+        volumes:
+            - "./letsencrypt:/letsencrypt"
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    nginx:
+        image: nginx:alpine
+        restart: always
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:${PORTFOLIO_DOMAINS}"
+            - "traefik.port=80"
+        volumes:
+            - ./nginx/html:/usr/share/nginx/html
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.nginx.rule=Host(\"greenlee.io\")"
+            - "traefik.http.routers.nginx.entrypoints=websecure"
+            - "traefik.http.routers.nginx.tls.certresolver=default_httpchallenge"
+            - "traefik.http.services.nginx.loadbalancer.server.port=32400"
