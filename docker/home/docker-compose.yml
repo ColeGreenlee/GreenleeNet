@@ -12,13 +12,13 @@ services:
       - "8443:443/tcp"
     environment:
       TZ: 'America/Chicago'
-      WEBPASSWORD: notpassword
-      ServerIP: 10.0.1.1
+      WEBPASSWORD: ${PIHOLE_PASSWORD}
+      ServerIP: 192.168.1.1
     labels:
       - "traefik.enable=true"
       - traefik.backend=pihole
       - traefik.port=80
-      - "traefik.frontend.rule=Host:pihole.greenlee.lan"
+      - "traefik.frontend.rule=Host:pihole.thenet.lan"
     volumes:
       - ./pihole/:/etc/pihole/
       - ./pihole/dnsmasq.d/:/etc/dnsmasq.d/
@@ -28,14 +28,3 @@ services:
       - 127.0.0.1
       - 1.1.1.1
     restart: unless-stopped
-  camera:
-    ports:
-      - '1048:8080'
-    volumes:
-      - '/etc/localtime:/etc/localtime:ro'
-      - '/etc/timezone:/etc/timezone:ro'
-      - './shinobi/config:/config'
-      - './shinobi/data:/var/lib/mysql'
-      - '${SHINOBI_VIDEO_PATH}:/opt/shinobi/videos'
-      - '/dev/shm/shinobiDockerTemp:/dev/shm/streams'
-    image: migoller/shinobidocker
