@@ -13,7 +13,7 @@ services:
     environment:
       TZ: 'America/Chicago'
       WEBPASSWORD: ${PIHOLE_PASSWORD}
-      ServerIP: 192.168.1.1
+      ServerIP: 192.168.1.2
     labels:
       - "traefik.enable=true"
       - traefik.backend=pihole
@@ -28,3 +28,9 @@ services:
       - 127.0.0.1
       - 1.1.1.1
     restart: unless-stopped
+jenkins:
+  ports:
+      - '49001:8080'
+    volumes:
+        - '$PWD/jenkins:/var/jenkins_home:z'
+    image: run
