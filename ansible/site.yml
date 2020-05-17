@@ -1,11 +1,6 @@
-- name: Baseline
-  hosts: all
-  become: yes
+---
+- name: install and set up common tasks
+  hosts: localhost
+  tags: common
   roles:
-    - baseline
-
-- name: Docker
-  hosts: docker
-  become: yes
-  roles:
-    - docker
+    - common
