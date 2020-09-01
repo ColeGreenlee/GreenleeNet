@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=America/Chicago
-      - PLEX_CLAIM=claim-jvHZGwL_zTMjGc99tdyG
+      - PLEX_CLAIM="${PLEX_CLAIM}"
 #    network_mode: host
     volumes:
       - /mnt/raid/Media/Plex:/config
@@ -70,3 +70,10 @@ services:
     volumes:
       - "./tinymediamanager/config:/config:rw"
       - "${MEDIA_PATH}:/media:rw"
+  weechat:
+    ports:
+      - '9001:9001'
+    volumes:
+      - "./weechat/.weechat:/weechat/.weechat"
+    image: thefynx/alpine-weechat
+    restart: unless-stopped
