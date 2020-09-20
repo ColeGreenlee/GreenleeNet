@@ -9,23 +9,21 @@ services:
             - "--entrypoints.web.address=:80"
             - "--entrypoints.websecure.address=:443"
             - "--api.insecure" # Don't do that in production
+            - "--serversTransport.insecureSkipVerify=true"
             - "--providers.docker=true"
             - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge=true"
             - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge.entrypoint=web"
             - "--certificatesresolvers.default_httpchallenge.acme.email=Cole@Greenlee.io"
             - "--certificatesresolvers.default_httpchallenge.acme.storage=/letsencrypt/acme.json"
-            #- "--certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/direc$
         labels:
-            # global redirect to https
             - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
             - "traefik.http.routers.http-catchall.entrypoints=web"
             - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
-            # middleware redirect
             - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
         ports:
             - "443:443"
             - "80:80"
-            - "8080:8080"
+            - "8888:8080"
         volumes:
             - "./letsencrypt:/letsencrypt"
             - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -49,18 +47,20 @@ services:
             - PGID=1000
             - MEM_LIMIT=1024M
         volumes:
-            - ./config:/config
+            - ./unifi/config:/config
         ports:
-#            - 3478:3478/udp
-#            - 10001:10001/udp
-#            - 8081:8081
-#            - 8443:8443
-#            - 8843:8843
-#            - 8880:8880
-#            - 6789:6789
+            - 3478:3478/udp
+            - 10001:10001/udp
+            - 8080:8080
+            - 8081:8081
+            - 8443:8443
+            - 8843:8843
+            - 8880:8880
+            - 6789:6789
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.unifi.rule=Host(\"unifi.greenlee.io\")"
             - "traefik.http.routers.unifi.entrypoints=websecure"
             - "traefik.http.routers.unifi.tls.certresolver=default_httpchallenge"
             - "traefik.http.services.unifi.loadbalancer.server.port=8443"
+            - "traefik.http.services.unifi.loadbalancer.server.scheme=https"
