@@ -14,7 +14,6 @@ services:
       - "--certificatesresolvers.default_httpchallenge.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.default_httpchallenge.acme.email=Cole@Greenlee.io"
       - "--certificatesresolvers.default_httpchallenge.acme.storage=/letsencrypt/acme.json"
-      #- "--certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/direc$
     labels:
       # global redirect to https
       - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
@@ -38,9 +37,9 @@ services:
       - PLEX_CLAIM="${PLEX_CLAIM}"
 #    network_mode: host
     volumes:
-      - /mnt/raid/Media/Plex:/config
-      - /mnt/raid/Media:/data
-      - /mnt/raid/Media/transcode:/transcode
+      - /storage_pool/media/Plex:/config
+      - /storage_pool/media:/data
+      - /storage_pool/media/transcode:/transcode
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.plex.rule=Host(\"v.greenlee.io\")"
@@ -57,23 +56,28 @@ services:
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
-  tinymediamanager_service:
-    image: romancin/tinymediamanager:latest
-    container_name: tinymediamanager
+  synapse:
+    container_name: synapse
     ports:
-      - "5803:5800"
-    environment:
-      - USER_ID=0
-      - GROUP_ID=0
-      - TZ=America/Chicago
-      - VNC_PASSWORD=${TINY_MEDIA_MANAGER_WEBUI_PASSWORD}
+      - '8008:8008'
+    image: 'matrixdotorg/synapse:latest'
     volumes:
-      - "./tinymediamanager/config:/config:rw"
-      - "${MEDIA_PATH}:/media:rw"
-  weechat:
-    ports:
-      - '9001:9001'
-    volumes:
-      - "./weechat/.weechat:/weechat/.weechat"
-    image: thefynx/alpine-weechat
-    restart: unless-stopped
+      - "./synapse:/data"
+    labels:
+#      - "traefik.backend=synapse"
+#      - "traefik.enable=true"
+#      - "traefik.frontend=true"
+#      - "traefik.port=8008"
+#      - "traefik.frontend.rule=Host:v.greenlee.io"
+#--
+#      - "traefik.enable=true"
+#      - traefik.http.routers.synapse.rule=Host(`x.greenlee.io`)
+#      - "traefik.http.routers.synapse.entrypoints=websecure"
+#      - "traefik.http.routers.synapse.tls.certresolver=default_httpchallenge"
+#      - "traefik.http.services.synapse.loadbalancer.server.port=8008"
+#      - "traefik.http.middlewares.synapse.stripprefix.prefixes=/_matrix"
+      - "traefik.enable=true"
+      - "traefik.http.routers.matrix.rule=Host(\"x.greenlee.io\")"
+      - "traefik.http.routers.matrix.entrypoints=websecure"
+      - "traefik.http.routers.matrix.tls.certresolver=default_httpchallenge"
+      - "traefik.http.services.matrix.loadbalancer.server.port=8008"
