@@ -1,5 +1,5 @@
 ---
-version: "2"
+version: "3"
 services:
   traefik:
     container_name: traefik
@@ -91,5 +91,4 @@ services:
       - 6881:6881/udp
       - 8080:8080
     restart: unless-stopped
-    network_mode:
-      service: wireguard
+    network_mode: service:wireguard
