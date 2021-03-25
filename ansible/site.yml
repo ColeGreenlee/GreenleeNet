@@ -1,6 +1,0 @@
----
-- name: install and set up common tasks
-  hosts: localhost
-  tags: common
-  roles:
-    - common

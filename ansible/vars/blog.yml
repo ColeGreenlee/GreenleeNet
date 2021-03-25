@@ -1,0 +1,4 @@
+---
+domain_name: blog.greenlee.io
+letsencrypt_email: cole@greenlee.io
+ansible_user: root

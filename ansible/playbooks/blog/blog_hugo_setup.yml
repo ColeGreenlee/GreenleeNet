@@ -1,0 +1,38 @@
+---
+# Blog Repo Initialization
+- hosts: blog
+  become: true
+  vars_files:
+    - ../../vars/blog.yml
+  gather_facts: no
+  
+  tasks:
+    - name: Install hugo
+      apt: name=hugo state=latest
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: 'https://github.com/ColeGreenlee/Blog.git'
+        dest: /srv/Blog
+        version: "HEAD"
+        update: yes
+
+    - name: Clean hugo build directory
+      file:
+        state: absent
+        path: /srv/Blog/public/
+
+    - name: Run a hugo build
+      command: hugo
+      args:
+        chdir: /srv/Blog/
+
+    - name: Clean nginx public directory
+      file:
+        state: absent
+        path: /var/www/html/*
+
+    - name: Copy file with owner and permissions
+      copy:
+        src: /srv/Blog/public
+        dest: /var/www/html

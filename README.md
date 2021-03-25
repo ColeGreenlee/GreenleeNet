@@ -1,78 +1,28 @@
-# :globe_with_meridians: **GreenleeNet**
+# :zap: **GreenleeNet**
 
 *My Personal Homelab - Documented with an abundance of emojis*
 
-## :wave: Introduction
+## :wave: Hello!
+This repo is currently undergoing a *LOT* of work, and may not be properly documented in some areas. Helpful pages that I've referenced while building out my services can be found below.
 
-### :zap: About This Repository
+## :bookmark_tabs: Some Important Links
+I've done my best to keep a comprehensive list of websites, articles, repos, and other sources that have been incorporated into this repo's code. Additionally, helpful tools and such may be included in the list below.
 
-Hello, and welcome to the repo! You can think of this document as a "Homelab From Scratch" guide - batteries not included.
+### Ansible
+- [Ansible Docs](https://docs.ansible.com/ansible/latest/index.html)
+  - [Install Guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+  - Quick Start Guide
+    - [Video Version](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+    - [Text Version](https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html#intro-getting-started)
+  - [Ad-Hoc Commands](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html)
+  - [Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
+    - [Inventory Patterns](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#intro-patterns)
+  - [Intro to Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
+  - Reference Projects
+    - [Ansible + Let's Encrypt + Nginx Setup](https://gist.github.com/mattiaslundberg/ba214a35060d3c8603e9b1ec8627d349) - [Mattias Lundberg](https://gist.github.com/mattiaslundberg)
 
-Since starting my own homelab, a project which I have dubbed 'GreenleeNet', I've been looking to document the process, all the way from physically building a server to an individual configuration file. The main portion of this repository will cover my homelab's current configuration, while also providing some insight on how the lab itself was initially developed. The purpose of this is to help out friends, or anyone else on the internet, looking to set up a similar solution.
+### Docker
+*__TODO__* :sweat_smile:
 
-Be warned that I am by no means an expert and should not be regarded as so. I'm a student documenting my learning process, and the way I configure services and networks may differ from how other tutorials guide you to do so. The content below will most likely use domains, server names, and network configurations specific to my setup. Because of this, I'll be writing my thought process and justifications for how I set up a specific service so that you, the reader, can best decide how to follow along.
-
-Best of luck!
-
-### :book: Table of Contents
-
- :construction: coming soon:construction:
-
-### :boy: About Myself
-
-My name is Cole Greenlee, and I'm a computer science student passionate about avoiding writing a decent bio for myself. I've been involved with software development for just over six years at this point, but would never consider myself an expert. I created this project as a learning experience, and to help some friends replicate portions of my setup.
-
-## :file_folder: Homelab Basics and Resources
-
-### :question: What Is A Homelab?
-
-The definition of what a homelab is will vary from use case to use case. For some users it's a small Raspberry Pi cluster, while other enthusiasts might be powering multiple racks worth of servers, storage, and backups. A homelab is simply what its name self-describes: a computer/server *lab*  hosted in your *home*. The best way to get started is always to jump in headfirst, and [r/homelab](https://www.reddit.com/r/homelab/) is the place to do so. The community is great, and even has a [Discord server](https://www.reddit.com/r/homelab/comments/ayf1od/join_the_discord/?ref=share&ref_source=link) I highly recommend for all of your tech support needs. 
-
-### :hammer: Why Did I Build A Homelab?
-
-While there are plenty of reasons for running a homelab, many of which are covered [in the r/homelab introduction](https://www.reddit.com/r/homelab/wiki/introduction), each person is going to have their own set of requirements. When I designed my homelab, my goals included the following:
-
-- Host my portfolio website
-- Have a custom domain for my email
-- Learn and deploy docker containers
-- Learn more about the basics of networking
-- Host my own media server
-- Have a way of running programs I've developed
-- A lot of other services including a VPN, a NAS Server, Game Servers, etc.
-
-### :money_with_wings: How Much Does It Cost?
-
-Portions of my lab's setup were purchased while others are a collection of parts I had sitting around when the need for the specific component arose. Almost nothing in my lab was purpose built to run as a server. My current Docker host, for example, is my old desktop dropped into a [cheaper Rosewill 4U case](https://www.amazon.com/Rosewill-Rackmount-Computer-Pre-Installed-RSV-L4000/dp/B0055EV30W?th=1).
-
-But where do you *actually buy* this hardware?
-
-My Personal List of Resources & Tips:
-
-- [Use Honey through my affiliate link to support my content -- it's free!](https://www.joinhoney.com/ref/2490dc1)
-  - or click [here](https://www.joinhoney.com/) to get Honey without my affiliate link
-- Subreddit Communities
-  - [r/homelab](https://www.reddit.com/r/homelabsales/) - posted sales and discounts
-  - [r/homelabsales](https://www.reddit.com/r/homelabsales/) - buying and selling between fellow homelab owners on reddit
-  - [r/datahoarder](https://www.reddit.com/r/DataHoarder/) - sales and discussion on bulk storage
-- The Usual Suspects
-  - [Craigslist](https://craigslist.org/) - tends to have large collections of enterprise hardware being cycled out of companies, especially in areas saturated with tech companies.
-  - [Ebay](https://www.ebay.com/) - lots of used and refurbished hardware, just be sure to check reviews and exercise general 
-  - [Amazon](https://www.amazon.com) - it's amazon, they have everything
-
-In the next section, *What's in My Homelab?*, I'll cover approximate costs for the parts of my lab listed.
-
-### :cowboy_hat_face: ​What's In My Homelab?
-
-:computer: Physical Servers
-
-| Hostname       | Specs                                                     |
-| -------------- | --------------------------------------------------------- |
-| Lithium        | AMD A8-6600k/16GB DDR3-1600/??TB Disk/Ubuntu Server 18.04 |
-| :construction: | :construction: More Info Coming Soon :construction:       |
-
-:cloud: VPS (Virtual Private Servers) - Hosted at [DigitalOcean](https://m.do.co/c/6c70ea23f507)
-
-| Hostname | Specs                                    |
-| -------- | ---------------------------------------- |
-| Hydrogen | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
-| Carbon   | 1GB Memory/25GB Disk/Ubuntu Server 18.04 |
+### Misc.
+- [GitHub Emoji Reference](https://gist.github.com/roachhd/1f029bd4b50b8a524f3c) - [roachhd](https://gist.github.com/roachhd)
